@@ -1,6 +1,6 @@
 #include <iostream>
-
 #include <eigen3/Eigen/Dense>
+
 using namespace Eigen;
 using namespace std;
 
@@ -54,21 +54,24 @@ int main() {
     a = solver.solve(y);
 
 
-
     std::cout << "...overfitting:" << std::endl;
     std::cout << a.transpose().format(PythonFmt) << std::endl;
 
     // Compute least squares polynomial coefficients
     m = 3 * n;
     x.setLinSpaced(m, -1.0, 1.0);
-    V = Vandermonde(x,n);
+    V = Vandermonde(x, n);
     y = r(x);
     a = V.colPivHouseholderQr().solve(y);
 
 
-
     std::cout << "...least squares:" << std::endl;
     std::cout << a.transpose().format(PythonFmt) << std::endl;
+    cout << "f(x) = ";
+
+    for (int i = 0; i < n; ++i) {
+//        cout << a(i) << "*" << x;
+    }
 
     return 0;
 }
