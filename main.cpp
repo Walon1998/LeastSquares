@@ -26,6 +26,13 @@ Eigen::VectorXd r(const Eigen::VectorXd &x) {
     return (1.0 / (1.0 + 25.0 * x.array() * x.array())).matrix();
 }
 
+void printfunction(Eigen::VectorXd a) {
+    cout << "f(x) = ";
+    for (int i = 0; i < a.size(); ++i) {
+        cout << a(i) << "*x^" << i << "+";
+    }
+}
+
 int main() {
 //    Eigen::VectorXd vector(4);
 //    vector << 1, 2, 3, 4;
@@ -56,6 +63,7 @@ int main() {
 
     std::cout << "...overfitting:" << std::endl;
     std::cout << a.transpose().format(PythonFmt) << std::endl;
+    printfunction(a);
 
     // Compute least squares polynomial coefficients
     m = 3 * n;
@@ -67,11 +75,8 @@ int main() {
 
     std::cout << "...least squares:" << std::endl;
     std::cout << a.transpose().format(PythonFmt) << std::endl;
-    cout << "f(x) = ";
+    printfunction(a);
 
-    for (int i = 0; i < n; ++i) {
-//        cout << a(i) << "*" << x;
-    }
 
     return 0;
 }
